@@ -17,6 +17,8 @@ def main():
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex02-20230422/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02-20230422/fig/3.png")
+    kk_img_2 = pg.image.load("ex02-20230422/fig/9.png")
+    kk_img_2 = pg.transform.rotozoom(kk_img_2, 0, 2.0)
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     bb_img = pg.Surface((20, 20))
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)  # 練習1
@@ -24,7 +26,7 @@ def main():
     x, y = random.randint(0, 1600), random.randint(0, 900)
     vx, vy = +1, +1
     bb_rect = bb_img.get_rect()  # 練習3
-    bb_rect.center = x, y  # 練習3
+    bb_rect.center = x, y 
     kk_rect = kk_img.get_rect()
     kk_rect.center = 900, 400
     
@@ -59,6 +61,10 @@ def main():
         screen.blit(bb_img, bb_rect)
 
         if kk_rect.colliderect(bb_rect):
+            screen.blit(bg_img, [0, 0])
+            screen.blit(kk_img_2, kk_rect)
+            pg.display.update()
+            pg.time.wait(3000)
             return
 
         pg.display.update()
